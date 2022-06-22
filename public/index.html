@@ -20,15 +20,14 @@
 
       // 3. This function creates an <iframe> (and YouTube player)
       //    after the API code downloads.
-
       var player;
-      let playerReady;
+      var playerReady;
       function onYouTubeIframeAPIReady() {
         playerReady = true;
       }
       function playThisVideo(videoID) {
         if (player) player.destroy();
-        player = new YT.Player("player", {
+        player = new YT.Player("player-view", {
           height: "312",
           width: "512",
           videoId: videoID,
@@ -46,15 +45,24 @@
         event.target.playVideo();
       }
 
-      // 5. The API calls this function when the player's state changes.
+      // 5. Subscribe callbacks to playerCallbacks which will be called onPlayerStateChange
+      const playerCallbacks = new Map();
+      playerCallbacks.add = function (cb) {
+        let key = Symbol();
+        this.set(key, cb);
+        return key;
+      };
+      playerCallbacks.remove = function (key) {
+        this.delete(key);
+      };
+      // 6. The API calls this function when the player's state changes.
       //    The function indicates that when playing a video (state=1),
       //    the player should play for six seconds and then stop.
       var done = false;
+
+      //calling everythign that listens to the youtube event
       function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
-        }
+        [...playerCallbacks.values()].forEach(cb => cb(event));
       }
       function stopVideo() {
         player.stopVideo();

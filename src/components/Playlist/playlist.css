@@ -1,0 +1,18 @@
+.playlist {
+  max-height: 400px;
+  overflow: scroll;
+}
+
+.playlist li {
+  cursor: pointer;
+}
+
+.playlist.hidden {
+  height: 0px !important;
+  margin: 0 !important;
+  overflow: hidden;
+}
+
+.playlist__current-song {
+  color: red;
+}

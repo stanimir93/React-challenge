@@ -11,7 +11,7 @@ export default function Song(props) {
   const navigate = useNavigate();
 
   function decodeHtmlCharCode(str) {
-    return str.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode));
+    return str?.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode));
   }
 
   return (
@@ -21,10 +21,10 @@ export default function Song(props) {
       </div>
       {song ? (
         <div>
-          <img src={song.img} alt={song.name} />
-          <h1>{decodeHtmlCharCode(song.src.name) || song.name}</h1>
+          <img src={song?.img} alt={song?.name} />
+          <h1>{decodeHtmlCharCode(song?.src?.name) || song.name}</h1>
           <p>{song.text || "song has no description"}</p>
-          <a href={song.src.id} target='_blank' title='Open Song in Youtube'>
+          <a href={song?.src?.id} target='_blank' title='Open Song in Youtube'>
             Open in YouTube
           </a>
         </div>
