@@ -1,12 +1,12 @@
 import "./home.css";
-import React, { useContext } from "react";
+import React from "react";
 import Card from "../../components/Card/Card";
 
 export default function Home(props) {
   const { songs, setPlaying } = props;
   return (
     <>
-      <h1>Space X Ships</h1>
+      <h1>My Songs</h1>
       <div className='songs'>
         {props?.songs?.map(song => {
           return (

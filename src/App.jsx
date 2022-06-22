@@ -60,7 +60,7 @@ export default function App() {
           <section>
             <Routes>
               <Route path={"/"} element={<Home songs={songs} setPlaying={setPlaying} />} />
-              <Route path={"song"} element={<Song songs={songs} />} />
+              <Route path={"song"} element={<Song songs={songs} setPlaying={setPlaying} />} />
               <Route path={"about"} element={<About />} />
               <Route path={"*"} element={<NotFound />} />
             </Routes>

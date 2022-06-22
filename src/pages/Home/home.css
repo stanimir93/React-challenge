@@ -1,6 +1,17 @@
 .songs {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 10px;
-  column-gap: 20px;
+  grid-template-columns: 1fr;
+  row-gap: 30px;
+}
+
+@media screen and (min-width: 576px) {
+  .songs {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .songs {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

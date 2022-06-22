@@ -1,0 +1,27 @@
+footer {
+  background-color: red;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-container {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 992px;
+  margin: auto;
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__link {
+  font-size: 20px;
+  padding: 5px;
+  margin: auto 15px;
+}

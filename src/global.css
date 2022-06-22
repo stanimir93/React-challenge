@@ -1,12 +1,24 @@
+* {
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  width: 100%;
+  position: relative;
+  min-height: 100vh;
 }
 
 main {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
-  /* width: 100vw; */
+  padding: 20px;
+  padding-bottom: 130px;
 }
 
 main section {

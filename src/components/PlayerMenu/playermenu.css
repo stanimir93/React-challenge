@@ -1,0 +1,6 @@
+.player__menu {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  white-space: nowrap;
+}

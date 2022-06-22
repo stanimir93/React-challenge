@@ -2,6 +2,7 @@ import "./player.css";
 import React, { useEffect, useRef, useState } from "react";
 import Playlist from "../Playlist/Playlist";
 import PlayerControls from "../PlayerControls/PlayerControls";
+import PlayerMenu from "../PlayerMenu/PlayerMenu";
 
 export default function Player(props) {
   const setPlaying = props.setPlaying;
@@ -26,34 +27,6 @@ export default function Player(props) {
   let prevIdx = currentIdx > 0 ? currentIdx - 1 : -1;
   let nextIdx = currentIdx < songsArray.length - 1 ? currentIdx + 1 : 0;
 
-  // Minimize Player
-  function handleMinimize() {
-    playerRef.current.classList.toggle("minimized");
-    playerRef.current.classList.contains("minimized") ? setMinimized(true) : setMinimized(false);
-  }
-
-  // Show/Hide Playlist
-  function togglePlaylist() {
-    playlistRef.current.classList.toggle("hidden");
-    playlistRef.current.classList.contains("hidden") ? setPlaylistHidden(true) : setPlaylistHidden(false);
-  }
-
-  // useEffect(() => {
-  //   function hidePlaylist(ev) {
-  //     if (!document.querySelector(".player").contains(ev.target)) {
-  //       playlistRef.current.classList.add("hidden");
-  //     }
-  //   }
-  //   document.addEventListener("click", hidePlaylist);
-  //   return () => document.removeEventListener("click", hidePlaylist);
-  // });
-
-  // Close Player
-  function closePlayer() {
-    playlist.current = null; //clear playlist on closing the player
-    setPlaying(null);
-  }
-
   // Create or destroy yt player on mount/unmount
   useEffect(() => {
     if (playerReady) playThisVideo(eIdPlaying);
@@ -77,12 +50,16 @@ export default function Player(props) {
   return (
     <div className='player'>
       <Playlist setPlaying={setPlaying} playlistRef={playlistRef} playlist={playlist.current} eIdPlaying={eIdPlaying} />
-      {/* Controls */}
-      <div className='player__menu'>
-        <button onClick={togglePlaylist}>{playlistHidden ? "Show Playlist" : "Hide Playlist"}</button>
-        <button onClick={handleMinimize}>{minimized ? "Maximize" : "Minimize"}</button>
-        <button onClick={closePlayer}>Close</button>
-      </div>
+      {/* Player menu */}
+      <PlayerMenu
+        setMinimized={setMinimized}
+        minimized={minimized}
+        playlistHidden={playlistHidden}
+        setPlaylistHidden={setPlaylistHidden}
+        player={playerRef.current}
+        playlist={playlistRef.current}
+        setPlaying={setPlaying}
+      />
       {/* Player View */}
       <div ref={playerRef} className='player__view-wrapper'>
         <div id='player-view'></div>

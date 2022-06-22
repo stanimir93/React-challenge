@@ -6,11 +6,17 @@ import logo from "../../assets/fxdigitallogo.png";
 export const Header = () => {
   return (
     <header>
-      <nav>
+      <div className='header-container'>
         <img src={logo} alt='logo' />
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/about'>About</NavLink>
-      </nav>
+        <nav>
+          <NavLink className={"header__link"} to='/'>
+            Home
+          </NavLink>
+          <NavLink className={"header__link"} to='/about'>
+            About
+          </NavLink>
+        </nav>
+      </div>
     </header>
   );
 };
