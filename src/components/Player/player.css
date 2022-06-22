@@ -10,14 +10,9 @@
 
 .player__menu {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
-}
-.player__menu__buttons {
   white-space: nowrap;
-}
-
-.player__menu__song-name {
 }
 
 .player__view-wrapper {

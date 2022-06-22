@@ -1,6 +1,7 @@
 import "./player.css";
 import React, { useEffect, useRef, useState } from "react";
 import Playlist from "../Playlist/Playlist";
+import PlayerControls from "../PlayerControls/PlayerControls";
 
 export default function Player(props) {
   const setPlaying = props.setPlaying;
@@ -73,39 +74,23 @@ export default function Player(props) {
     return () => playerCallbacks.remove(cb);
   });
 
-  // Next Song
-  function handleNext() {
-    setPlaying(songsArray.at(nextIdx));
-  }
-  // Prev Song
-  function handlePrev() {
-    setPlaying(songsArray.at(prevIdx));
-  }
-  // Play/Pause Song
-  function handlePlay() {
-    if (window.player.getPlayerState() === 1) window.player.pauseVideo();
-    else window.player.playVideo();
-  }
-
   return (
     <div className='player'>
       <Playlist setPlaying={setPlaying} playlistRef={playlistRef} playlist={playlist.current} eIdPlaying={eIdPlaying} />
+      {/* Controls */}
       <div className='player__menu'>
-        <span className='player__menu__song-name'>{playlist.current.get(eIdPlaying)}</span>
-        <span className='player__menu__buttons'>
-          <button onClick={togglePlaylist}>{playlistHidden ? "Show Playlist" : "Hide Playlist"}</button>
-          <button onClick={handleMinimize}>{minimized ? "Maximize" : "Minimize"}</button>
-          <button onClick={closePlayer}>Close</button>
-        </span>
+        <button onClick={togglePlaylist}>{playlistHidden ? "Show Playlist" : "Hide Playlist"}</button>
+        <button onClick={handleMinimize}>{minimized ? "Maximize" : "Minimize"}</button>
+        <button onClick={closePlayer}>Close</button>
       </div>
+      {/* Player View */}
       <div ref={playerRef} className='player__view-wrapper'>
         <div id='player-view'></div>
       </div>
-      <div className='player__controls'>
-        <button onClick={handlePrev}>Prev</button>
-        <button onClick={handlePlay}>Play/Pause</button>
-        <button onClick={handleNext}>Next</button>
-      </div>
+      {/* Player Controls */}
+      {minimized && (
+        <PlayerControls songs={songsArray} next={nextIdx} prev={prevIdx} song={playlist.current.get(eIdPlaying)} />
+      )}{" "}
     </div>
   );
 }

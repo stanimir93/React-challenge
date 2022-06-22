@@ -34,7 +34,7 @@
           playerVars: {
             playsinline: 1,
             autoplay: 1,
-            controls: 0,
+            controls: 1,
             modestbranding: 1,
             rel: 0,
           },
@@ -67,9 +67,6 @@
       //calling everythign that listens to the youtube event
       function onPlayerStateChange(event) {
         [...playerCallbacks.values()].forEach(cb => cb(event));
-      }
-      function stopVideo() {
-        player.stopVideo();
       }
     </script>
   </body>
