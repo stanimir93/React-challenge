@@ -4,7 +4,7 @@ import Card from "../../components/Card/Card";
 import dummyData from "../../dummyData.json"; // To be replaced with your api response data
 
 export default function Home(props) {
-  const songs = props.songs;
+  const { songs, myPlayer } = props;
   return (
     <>
       <h1>Space X Ships</h1>
@@ -18,6 +18,8 @@ export default function Home(props) {
               name={song.name}
               text={song.text}
               url={song?.src?.id}
+              myPlayer={myPlayer}
+              eId={song.eId.replace("/yt/", "")}
             />
           );
         })}
