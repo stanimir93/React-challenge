@@ -10,6 +10,7 @@ export default function Player(props) {
   const playlistRef = useRef(null);
   const playlist = useRef(null);
   const [minimized, setMinimized] = useState(false);
+  const [playlistHidden, setPlaylistHidden] = useState(true);
 
   // Prepare a playlist with all the songs
   if (songs && !playlist.current) {
@@ -19,6 +20,10 @@ export default function Player(props) {
     });
     playlist.current = songsMap;
   }
+  let songsArray = [...playlist.current.keys()];
+  let currentIdx = songsArray.indexOf(eIdPlaying);
+  let prevIdx = currentIdx > 0 ? currentIdx - 1 : -1;
+  let nextIdx = currentIdx < songsArray.length - 1 ? currentIdx + 1 : 0;
 
   // Minimize Player
   function handleMinimize() {
@@ -29,7 +34,18 @@ export default function Player(props) {
   // Show/Hide Playlist
   function togglePlaylist() {
     playlistRef.current.classList.toggle("hidden");
+    playlistRef.current.classList.contains("hidden") ? setPlaylistHidden(true) : setPlaylistHidden(false);
   }
+
+  // useEffect(() => {
+  //   function hidePlaylist(ev) {
+  //     if (!document.querySelector(".player").contains(ev.target)) {
+  //       playlistRef.current.classList.add("hidden");
+  //     }
+  //   }
+  //   document.addEventListener("click", hidePlaylist);
+  //   return () => document.removeEventListener("click", hidePlaylist);
+  // });
 
   // Close Player
   function closePlayer() {
@@ -49,10 +65,7 @@ export default function Player(props) {
   useEffect(() => {
     function songFinished(ev) {
       if (ev.data === 0) {
-        let songs = [...playlist.current.keys()];
-        let currentIdx = songs.indexOf(eIdPlaying);
-        let next = currentIdx < songs.length - 1 ? currentIdx + 1 : 0;
-        setPlaying(songs[next]);
+        setPlaying(songsArray.at(nextIdx));
       }
     }
     // Subscribe/Unsubscribe songFinished to playerCallbacks onPlayerStateChange
@@ -60,19 +73,38 @@ export default function Player(props) {
     return () => playerCallbacks.remove(cb);
   });
 
+  // Next Song
+  function handleNext() {
+    setPlaying(songsArray.at(nextIdx));
+  }
+  // Prev Song
+  function handlePrev() {
+    setPlaying(songsArray.at(prevIdx));
+  }
+  // Play/Pause Song
+  function handlePlay() {
+    if (window.player.getPlayerState() === 1) window.player.pauseVideo();
+    else window.player.playVideo();
+  }
+
   return (
     <div className='player'>
       <Playlist setPlaying={setPlaying} playlistRef={playlistRef} playlist={playlist.current} eIdPlaying={eIdPlaying} />
       <div className='player__menu'>
         <span className='player__menu__song-name'>{playlist.current.get(eIdPlaying)}</span>
         <span className='player__menu__buttons'>
-          <button onClick={togglePlaylist}>Playlist</button>
+          <button onClick={togglePlaylist}>{playlistHidden ? "Show Playlist" : "Hide Playlist"}</button>
           <button onClick={handleMinimize}>{minimized ? "Maximize" : "Minimize"}</button>
           <button onClick={closePlayer}>Close</button>
         </span>
       </div>
       <div ref={playerRef} className='player__view-wrapper'>
         <div id='player-view'></div>
+      </div>
+      <div className='player__controls'>
+        <button onClick={handlePrev}>Prev</button>
+        <button onClick={handlePlay}>Play/Pause</button>
+        <button onClick={handleNext}>Next</button>
       </div>
     </div>
   );
