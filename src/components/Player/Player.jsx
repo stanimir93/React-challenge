@@ -1,7 +1,6 @@
 import "./player.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Playlist from "../Playlist/Playlist";
-import PlayerControls from "../PlayerControls/PlayerControls";
 import PlayerMenu from "../PlayerMenu/PlayerMenu";
 
 export default function Player(props) {
@@ -29,9 +28,9 @@ export default function Player(props) {
 
   // Create or destroy yt player on mount/unmount
   useEffect(() => {
-    if (playerReady) playThisVideo(eIdPlaying);
+    if (window.ytPlayerReady) playThisVideo(eIdPlaying);
     return () => {
-      window.player?.destroy();
+      window?.ytPlayer?.destroy();
     };
   }, [eIdPlaying]);
 
@@ -47,6 +46,10 @@ export default function Player(props) {
     return () => playerCallbacks.remove(cb);
   });
 
+  // useLayoutEffect(() => {
+  //   playerRef.cont
+  // });
+
   return (
     <div className='player'>
       <Playlist setPlaying={setPlaying} playlistRef={playlistRef} playlist={playlist.current} eIdPlaying={eIdPlaying} />
@@ -56,18 +59,20 @@ export default function Player(props) {
         minimized={minimized}
         playlistHidden={playlistHidden}
         setPlaylistHidden={setPlaylistHidden}
-        player={playerRef.current}
-        playlist={playlistRef.current}
+        playerRef={playerRef}
+        playlistRef={playlistRef}
         setPlaying={setPlaying}
+        songsArray={songsArray}
+        nextIdx={nextIdx}
+        prevIdx={prevIdx}
+        playlist={playlist}
+        eIdPlaying={eIdPlaying}
       />
       {/* Player View */}
       <div ref={playerRef} className='player__view-wrapper'>
         <div id='player-view'></div>
       </div>
       {/* Player Controls */}
-      {minimized && (
-        <PlayerControls songs={songsArray} next={nextIdx} prev={prevIdx} song={playlist.current.get(eIdPlaying)} />
-      )}{" "}
     </div>
   );
 }

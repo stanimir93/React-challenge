@@ -1,8 +1,10 @@
 footer {
-  background-color: red;
   position: absolute;
   bottom: 0;
   width: 100%;
+  color: white;
+  /* border-top: 1px solid #002233; */
+  background-color: rgba(0, 102, 255, 0.2);
 }
 
 .footer-container {

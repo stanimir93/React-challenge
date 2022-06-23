@@ -10,10 +10,10 @@ export const Header = () => {
         <img src={logo} alt='logo' />
         <nav>
           <NavLink className={"header__link"} to='/'>
-            Home
+            HOME
           </NavLink>
           <NavLink className={"header__link"} to='/about'>
-            About
+            ABOUT
           </NavLink>
         </nav>
       </div>

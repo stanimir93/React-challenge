@@ -5,9 +5,17 @@
   justify-content: center;
   gap: 15px;
   padding: 15px;
-  color: #333;
-  border: solid 1px #333;
+  /* color: #333; */
+  color: rgb(200, 200, 200);
+  border: solid 1px #002233;
   border-radius: 5px;
   align-items: center;
   text-align: center;
+  background-color: rgba(0, 102, 255, 0.2);
+}
+
+.card__description {
+  /* white-space: nowrap; */
+  overflow: hidden;
+  /* text-overflow: ellipsis; */
 }

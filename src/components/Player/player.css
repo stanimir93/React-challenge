@@ -3,14 +3,13 @@
   bottom: 0px;
   right: 0px;
   z-index: 100;
-  background-color: white;
   transition: all 0.4s ease-in;
-  max-width: 512px;
-}
+  max-width: 576px;
+  background-color: rgba(0, 0, 0, 0.9);
 
-.player__view-wrapper {
-  height: 312px;
-  background-color: lightgray;
+  padding: 10px 5px;
+  border-radius: 4px;
+  width: 100%;
 }
 
 .player__view-wrapper.minimized {
@@ -22,4 +21,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.player__view-wrapper {
+  width: 100vw;
+  height: calc(100vw * 0.56);
+  max-height: calc(576px * 0.56);
+  position: relative;
+}
+
+@media screen and (max-width: 576px) {
+  #player-view {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }

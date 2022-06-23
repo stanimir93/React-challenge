@@ -20,21 +20,21 @@
 
       // 3. This function creates an <iframe> (and YouTube player)
       //    after the API code downloads.
-      var player;
-      var playerReady;
+      var ytPlayer;
+      var ytPlayerReady;
       function onYouTubeIframeAPIReady() {
-        playerReady = true;
+        ytPlayerReady = true;
       }
       function playThisVideo(videoID) {
-        if (player) player.destroy();
-        player = new YT.Player("player-view", {
-          height: "312",
-          width: "512",
+        if (ytPlayer) ytPlayer.destroy();
+        ytPlayer = new YT.Player("player-view", {
+          height: "323",
+          width: "576",
           videoId: videoID,
           playerVars: {
             playsinline: 1,
             autoplay: 1,
-            controls: 1,
+            controls: 0,
             modestbranding: 1,
             rel: 0,
           },

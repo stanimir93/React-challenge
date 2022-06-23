@@ -7,7 +7,7 @@ export default function CardButton(props) {
 
   return (
     <Link className='card__info-button' to={`song?id=${songId}`}>
-      Song Info
+      INFO
     </Link>
   );
 }

@@ -12,6 +12,8 @@ import "./global.css";
 export default function App() {
   const [songs, setSongs] = useState();
   const [playing, setPlaying] = useState();
+  const [isItPlaying, setIsItPLaying] = useState(window?.ytPlayer?.getPlayerState() !== 1 ? false : true);
+
   // Dummy Fetch
   useEffect(() => {
     const controller = new AbortController();

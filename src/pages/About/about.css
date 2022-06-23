@@ -1,0 +1,16 @@
+.about {
+  max-width: 768px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+.about__heading {
+  margin: 20px auto;
+  font-size: 40px;
+  font-weight: bold;
+}
+.about__paragraph {
+  margin: 5px auto;
+}

@@ -1,9 +1,9 @@
 .card__info-button {
-  background-color: salmon;
-  padding: 5px;
+  background-color: #002233;
+  padding: 9px 15px;
   text-decoration: none;
   border-radius: 4px;
-  border: 1px solid;
-  color: black;
+  /* border: 1px solid; */
+  color: salmon;
   cursor: pointer;
 }

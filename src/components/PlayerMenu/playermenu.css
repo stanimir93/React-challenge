@@ -1,6 +1,38 @@
-.player__menu {
+.currently-playing-title {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  padding-top: 15px;
+  padding-bottom: 7px;
+  margin: 0 5px;
+}
+
+.player-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0px;
+}
+
+.player-menu__window-controls,
+.player-menu__playback-controls {
   display: flex;
   justify-content: end;
   align-items: center;
   white-space: nowrap;
+}
+.player-menu button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 27px;
+  padding: 3px;
+  margin: 0px 7px 7px;
+  color: salmon;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

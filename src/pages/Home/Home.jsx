@@ -6,7 +6,7 @@ export default function Home(props) {
   const { songs, setPlaying } = props;
   return (
     <>
-      <h1>My Songs</h1>
+      <h1 className='home__heading'>My Songs</h1>
       <div className='songs'>
         {props?.songs?.map(song => {
           return (

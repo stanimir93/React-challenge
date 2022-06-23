@@ -1,6 +1,7 @@
 .card__image {
   width: 90%;
   height: 200px;
+  background-color: #002233;
   background-size: cover;
   background-position: center;
   display: flex;

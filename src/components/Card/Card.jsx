@@ -9,7 +9,7 @@ export default function Card(props) {
     <div className='card'>
       <CardImage eId={eId} img={img} setPlaying={setPlaying} />
       <h4>{name}</h4>
-      <p>{text || "No description provided for this song!"}</p>
+      <p className='card__description'>{text || "No description provided for this song!"}</p>
       <CardButton songId={songId} name={name} />
     </div>
   );
