@@ -8,7 +8,7 @@ export default function Song(props) {
   const { songs } = props;
   const [searchParams] = useSearchParams();
   const eId = searchParams.get("id");
-  const song = songs?.find(song => (song.eId === eId ? song.name : ""));
+  const song = songs?.find(song => (song?.eId.replace("/yt/", "") === eId ? song.name : ""));
   const navigate = useNavigate();
 
   function decodeHtmlCharCode(str) {

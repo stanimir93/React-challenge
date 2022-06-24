@@ -15,7 +15,7 @@ export default function App() {
   const [songs, setSongs] = useState(); // songs stores the data fetched from the API
   const [playerState, setPlayerState] = useState(); // setPlayerState is given to the YouTube Player to inform us on state updates
   const [currentSongToPlay, setCurrentSongToPlay] = useState(); //take the song eId
-  const music = useRef(musicShape); // The Music context will take this ref
+  const music = useRef(musicShape); // The MusicContext will take this ref
 
   // Attach functions that control the player to the context object
   music.current.closePlayer = function () {

@@ -11,7 +11,14 @@ export default function Home(props) {
       <div className='songs'>
         {props?.songs?.map(song => {
           return (
-            <Card key={uid()} img={song?.img} title={song?.name} text={song.text} url={song?.src?.id} eId={song?.eId} />
+            <Card
+              key={uid()}
+              img={song?.img}
+              title={song?.name}
+              text={song.text}
+              url={song?.src?.id}
+              eId={song?.eId?.replace("/yt/", "")}
+            />
           );
         })}
       </div>

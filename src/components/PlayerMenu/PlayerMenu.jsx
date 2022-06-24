@@ -30,7 +30,7 @@ export default function PlayerMenu(props) {
 
   return (
     <div>
-      {/* Show song same if minimized */}
+      {/* Show song name if minimized */}
       {playerMinimized && <p className='currently-playing-title'>{currName}</p>}
       <div className='player-menu'>
         {/* Playback control */}
