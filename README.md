@@ -28,3 +28,7 @@ To fire up the project run `npm install` and then `npm run start` in the root di
 
 - To run this app use a **dev server** with the **WebPack Configuration** in this repo. This ensures the API requests run through a **proxy**.
 - The proxy is necessary due to a CORS issue with Openwhyd's API (no 'Access-Control-Allow-Origin' header).
+
+#### P.S.
+
+Since the API provides YouTube links, I have decided to implement a small player as well. :)
