@@ -1,9 +1,8 @@
 .card__info-button {
-  background-color: #002233;
+  background-color: var(--primary-bg-color);
   padding: 9px 15px;
   text-decoration: none;
   border-radius: 4px;
-  /* border: 1px solid; */
-  color: salmon;
+  color: var(--accent-color);
   cursor: pointer;
 }

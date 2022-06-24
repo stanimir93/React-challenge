@@ -1,8 +1,12 @@
-.card__play__button {
+.play-button {
   background-color: transparent;
-  color: salmon;
+  color: var(--accent-color);
   border: none;
   font-size: 35px;
   padding: 7px;
   cursor: pointer;
+}
+
+.play-button path {
+  color: var(--accent-color);
 }

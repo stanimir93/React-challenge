@@ -5,18 +5,16 @@
   font-size: 16px;
   overflow-x: hidden;
   white-space: nowrap;
-  padding-top: 15px;
+  padding-top: 12px;
   padding-bottom: 7px;
   margin: 0 5px;
 }
-
 .player-menu {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 5px 0px;
 }
-
 .player-menu__window-controls,
 .player-menu__playback-controls {
   display: flex;
@@ -31,8 +29,11 @@
   font-size: 27px;
   padding: 3px;
   margin: 0px 7px 7px;
-  color: salmon;
+  color: var(--accent-color);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.player-menu path {
+  color: var(--accent-color);
 }

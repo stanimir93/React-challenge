@@ -1,93 +1,59 @@
 import "./playermenu.css";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import {
   FaTimes,
   FaChevronDown,
   FaChevronUp,
   FaMusic,
-  FaPause,
-  FaPlay,
   FaStepBackward,
   FaStepForward,
+  FaPlay,
+  FaPause,
 } from "react-icons/fa";
+import { MusicContext } from "../../contexts/MusicContext";
 
 export default function PlayerMenu(props) {
-  const {
-    setPlaying,
-    playerRef,
-    playlistRef,
-    minimized,
-    setMinimized,
-    setPlaylistHidden,
-    playlistHidden,
-    songsArray,
-    prevIdx,
-    nextIdx,
-    playlist,
-    eIdPlaying,
-  } = props;
-  const songName = playlist.current.get(eIdPlaying);
-  const [isItPlaying, setIsItPLaying] = useState(window?.ytPlayer?.getPlayerState() !== 1 ? false : true);
+  const music = useContext(MusicContext);
+  const { nextId, prevId, playThis, currName, closePlayer, playerState, handlePlayPause } = music;
+  const { playerRef, playlistRef, playerMinimized, setPlayerMinimized, setPlaylistHidden } = props;
 
   // Minimize Player
   function handleMinimize() {
     playerRef.current.classList.toggle("minimized");
-    playerRef.current.classList.contains("minimized") ? setMinimized(true) : setMinimized(false);
+    playerRef.current.classList.contains("minimized") ? setPlayerMinimized(true) : setPlayerMinimized(false);
   }
-
   // Show/Hide Playlist
   function togglePlaylist() {
     playlistRef.current.classList.toggle("hidden");
     playlistRef.current.classList.contains("hidden") ? setPlaylistHidden(true) : setPlaylistHidden(false);
   }
 
-  // Close Player
-  function closePlayer(ev) {
-    console.log("closing from button");
-    playlistRef.current = null; //clear playlist on closing the player
-    setPlaying(null);
-  }
-
-  // Next Song
-  function handleNext() {
-    setPlaying(songsArray.at(nextIdx));
-  }
-
-  // Prev Song
-  function handlePrev() {
-    setPlaying(songsArray.at(prevIdx));
-  }
-
-  // Play/Pause Song
-  function handlePlay() {
-    if (window?.ytPlayer?.getPlayerState() === 1) window?.ytPlayer?.pauseVideo();
-    else window?.ytPlayer?.playVideo();
-    setIsItPLaying(window?.ytPlayer?.getPlayerState() === 1);
-  }
-
   return (
     <div>
-      {minimized && <p className='currently-playing-title'>{playlist.current.get(eIdPlaying)}</p>}
+      {/* Show song same if minimized */}
+      {playerMinimized && <p className='currently-playing-title'>{currName}</p>}
       <div className='player-menu'>
+        {/* Playback control */}
         <div className='player-menu__playback-controls'>
-          <button onClick={handlePrev}>
+          <button onClick={() => playThis(prevId)}>
             <FaStepBackward />
           </button>
-          <button onClick={handlePlay}>{!isItPlaying ? <FaPause /> : <FaPlay />}</button>
-          <button onClick={handleNext}>
+          <button onClick={handlePlayPause}>{playerState === 1 ? <FaPause /> : <FaPlay />}</button>
+          <button onClick={() => playThis(nextId)}>
             <FaStepForward />
           </button>
         </div>
+        {/* Player window control */}
         <div className='player-menu__window-controls'>
           <button onClick={togglePlaylist}>
             <FaMusic />
           </button>
-          <button onClick={handleMinimize}>{minimized ? <FaChevronUp /> : <FaChevronDown />}</button>
+          <button onClick={handleMinimize}>{playerMinimized ? <FaChevronUp /> : <FaChevronDown />}</button>
           <button onClick={closePlayer} id='close-btn' title='Close Player'>
             <FaTimes />
           </button>
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 }

@@ -5,17 +5,13 @@
   justify-content: center;
   gap: 15px;
   padding: 15px;
-  /* color: #333; */
-  color: rgb(200, 200, 200);
-  border: solid 1px #002233;
+  color: var(--text-color);
+  border: solid 1px var(--primary-bg-color);
   border-radius: 5px;
   align-items: center;
   text-align: center;
-  background-color: rgba(0, 102, 255, 0.2);
+  background-color: var(--secondary-bg-color);
 }
-
 .card__description {
-  /* white-space: nowrap; */
   overflow: hidden;
-  /* text-overflow: ellipsis; */
 }

@@ -4,7 +4,6 @@
   row-gap: 30px;
   padding: 0px 10px;
 }
-
 @media screen and (min-width: 576px) {
   .songs {
     grid-template-columns: 1fr 1fr;
@@ -16,7 +15,6 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
-
 .home__heading {
   margin: 20px auto 40px;
   font-size: 40px;

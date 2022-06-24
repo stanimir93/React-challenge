@@ -11,18 +11,15 @@
   border-radius: 4px;
   width: 100%;
 }
-
 .player__view-wrapper.minimized {
   height: 0px;
   overflow: hidden;
 }
-
 .player__controls {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .player__view-wrapper {
   width: 100vw;
   height: calc(100vw * 0.56);

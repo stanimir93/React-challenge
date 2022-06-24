@@ -9,7 +9,8 @@
 
   <body>
     <div id="root"></div>
-    <noscript> You need to enable JavaScript to run this app. </noscript>
+
+    <!-- Youtube Player API -->
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement("script");
@@ -36,6 +37,7 @@
             autoplay: 1,
             controls: 0,
             modestbranding: 1,
+            iv_load_policy: 3,
             rel: 0,
           },
           events: {
@@ -49,24 +51,22 @@
         event.target.playVideo();
       }
 
-      // 5. Subscribe callbacks to playerCallbacks which will be called onPlayerStateChange
-      const playerCallbacks = new Map();
-      playerCallbacks.add = function (cb) {
-        let key = Symbol();
-        this.set(key, cb);
-        return key;
-      };
-      playerCallbacks.remove = function (key) {
-        this.delete(key);
-      };
-      // 6. The API calls this function when the player's state changes.
+      // 5. The API calls this function when the player's state changes.
       //    The function indicates that when playing a video (state=1),
       //    the player should play for six seconds and then stop.
       var done = false;
 
       //calling everythign that listens to the youtube event
+      let ytPlayerState;
       function onPlayerStateChange(event) {
-        [...playerCallbacks.values()].forEach(cb => cb(event));
+        ytPlayerState = event.data;
+        document.dispatchEvent(
+          new CustomEvent("ytPlayerStateChangeEvent", {
+            detail: {
+              data: event.data,
+            },
+          }),
+        );
       }
     </script>
   </body>

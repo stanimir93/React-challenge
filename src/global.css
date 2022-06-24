@@ -1,19 +1,23 @@
+:root {
+  --primary-bg-color: #002233;
+  --secondary-bg-color: #002f5c;
+  --text-color: #c8c8c8;
+  --accent-color: salmon;
+}
 * {
   box-sizing: content-box;
   margin: 0;
   padding: 0;
-  color: rgb(200, 200, 200);
+  color: var(--text-color);
 }
-
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 0;
   width: 100%;
   position: relative;
   min-height: 100vh;
-  background-color: #002233;
+  background-color: var(--primary-bg-color);
 }
-
 main {
   display: flex;
   justify-content: center;
@@ -22,8 +26,10 @@ main {
   padding: 20px;
   padding-bottom: 130px;
 }
-
 main section {
   width: 100%;
   max-width: 1200px;
+}
+a {
+  color: var(--accent-color);
 }

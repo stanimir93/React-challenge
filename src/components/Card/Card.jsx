@@ -4,13 +4,13 @@ import CardButton from "../CardButton/CardButton";
 import CardImage from "../CardImage/CardImage";
 
 export default function Card(props) {
-  const { img, text, name, songId, setPlaying, eId } = props;
+  const { title, img, text, eId } = props;
   return (
     <div className='card'>
-      <CardImage eId={eId} img={img} setPlaying={setPlaying} />
-      <h4>{name}</h4>
+      <CardImage img={img} eId={eId} />
+      <h4>{title}</h4>
       <p className='card__description'>{text || "No description provided for this song!"}</p>
-      <CardButton songId={songId} name={name} />
+      <CardButton eId={eId} title={title} />
     </div>
   );
 }

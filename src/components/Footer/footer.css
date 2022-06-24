@@ -2,11 +2,8 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  color: white;
-  /* border-top: 1px solid #002233; */
-  background-color: rgba(0, 102, 255, 0.2);
+  background-color: var(--secondary-bg-color);
 }
-
 .footer-container {
   padding: 15px;
   display: flex;
@@ -15,13 +12,11 @@ footer {
   max-width: 992px;
   margin: auto;
 }
-
 .footer__links {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .footer__link {
   font-size: 20px;
   padding: 5px;

@@ -5,7 +5,6 @@
   text-overflow: ellipsis;
   border-bottom: 2px solid rgba(255, 255, 255, 0.25);
 }
-
 .playlist li {
   cursor: pointer;
   color: white;
@@ -19,13 +18,11 @@
 .playlist li:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-
 .playlist.hidden {
   display: none;
 }
-
 li.playlist__current-song {
-  color: salmon;
+  color: var(--accent-color);
 }
 
 @media screen and (min-width: 576px) {

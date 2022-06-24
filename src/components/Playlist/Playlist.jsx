@@ -1,20 +1,25 @@
 import "./playlist.css";
-import React from "react";
+import React, { useContext } from "react";
+import { MusicContext } from "../../contexts/MusicContext";
+import { uid } from "uid";
 
 export default function Playlist(props) {
-  const { playlist, eIdPlaying, playlistRef, setPlaying } = props;
+  const { playlistRef } = props;
+  const music = useContext(MusicContext);
+  const { allSongsMap, currId, playThis } = music;
 
   function changeSong(ev) {
-    if (ev.target.dataset.eid) setPlaying(ev.target.dataset.eid);
+    if (ev.target.dataset.eid) playThis(ev.target.dataset.eid);
   }
+
   return (
     <ul className='playlist hidden' ref={playlistRef} onClick={changeSong}>
-      {[...playlist.entries()].map(song => {
+      {[...allSongsMap.entries()].map(song => {
         let name = song[1];
         let eId = song[0];
-        let cls = eId === eIdPlaying ? "playlist__current-song" : "";
+        let cls = eId === currId ? "playlist__current-song" : "";
         return (
-          <li key={eId} data-eid={eId} className={cls}>
+          <li key={uid()} data-eid={eId} className={cls}>
             {name}
           </li>
         );
