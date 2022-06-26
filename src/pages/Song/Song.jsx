@@ -31,7 +31,7 @@ export default function Song(props) {
           </div>
           <h1 className='song-page__heading'>{decodeHtmlCharCode(song?.src?.name && song?.name)}</h1>
           <p className='song-page__description'>{song?.text || "No description provided for this song!"}</p>
-          <a className='song-page__link' href={song?.src?.id} target='_blank' title='Open Song in Youtube'>
+          <a className='song-page__link' href={song?.src?.id} target='_blank' title='Open Song on Youtube'>
             Open on YouTube
           </a>
         </div>

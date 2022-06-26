@@ -1,12 +1,12 @@
 import "./playbutton.css";
-import React, { useContext } from "react";
+import React from "react";
 import { FaPauseCircle, FaPlayCircle } from "react-icons/fa";
-import { MusicContext } from "../../contexts/MusicContext";
+import { useMusic } from "../../contexts/MusicContext";
 
 export default function PlayButton(props) {
   let { eId } = props;
   eId = eId.replace("/yt/", "");
-  const music = useContext(MusicContext);
+  const music = useMusic();
   const { playThis, playerState, currId, handlePlayPause } = music;
 
   function handlePlayBtn() {
@@ -15,7 +15,7 @@ export default function PlayButton(props) {
   }
 
   return (
-    <button className='play-button' onClick={handlePlayBtn}>
+    <button className='play-button' onClick={handlePlayBtn} title={playerState === 1 ? "Pause" : "Play"}>
       {playerState === 1 && currId === eId ? <FaPauseCircle /> : <FaPlayCircle />}
     </button>
   );

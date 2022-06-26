@@ -1,11 +1,11 @@
 import "./playlist.css";
-import React, { useContext } from "react";
-import { MusicContext } from "../../contexts/MusicContext";
+import React from "react";
+import { useMusic } from "../../contexts/MusicContext";
 import { uid } from "uid";
 
 export default function Playlist(props) {
   const { playlistRef } = props;
-  const music = useContext(MusicContext);
+  const music = useMusic();
   const { allSongsMap, currId, playThis } = music;
 
   function changeSong(ev) {

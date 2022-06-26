@@ -1,5 +1,5 @@
 import "./playermenu.css";
-import React, { useContext } from "react";
+import React from "react";
 import {
   FaTimes,
   FaChevronDown,
@@ -10,12 +10,12 @@ import {
   FaPlay,
   FaPause,
 } from "react-icons/fa";
-import { MusicContext } from "../../contexts/MusicContext";
+import { useMusic } from "../../contexts/MusicContext";
 
 export default function PlayerMenu(props) {
-  const music = useContext(MusicContext);
+  const music = useMusic();
   const { nextId, prevId, playThis, currName, closePlayer, playerState, handlePlayPause } = music;
-  const { playerRef, playlistRef, playerMinimized, setPlayerMinimized, setPlaylistHidden } = props;
+  const { playerRef, playlistRef, playerMinimized, playlistHidden, setPlayerMinimized, setPlaylistHidden } = props;
 
   // Minimize Player
   function handleMinimize() {
@@ -35,20 +35,24 @@ export default function PlayerMenu(props) {
       <div className='player-menu'>
         {/* Playback control */}
         <div className='player-menu__playback-controls'>
-          <button onClick={() => playThis(prevId)}>
+          <button onClick={() => playThis(prevId)} title='Previous'>
             <FaStepBackward />
           </button>
-          <button onClick={handlePlayPause}>{playerState === 1 ? <FaPause /> : <FaPlay />}</button>
-          <button onClick={() => playThis(nextId)}>
+          <button onClick={handlePlayPause} title={playerState === 1 ? "Pause" : "Play"}>
+            {playerState === 1 ? <FaPause /> : <FaPlay />}
+          </button>
+          <button onClick={() => playThis(nextId)} title='Next'>
             <FaStepForward />
           </button>
         </div>
         {/* Player window control */}
         <div className='player-menu__window-controls'>
-          <button onClick={togglePlaylist}>
+          <button onClick={togglePlaylist} title={playlistHidden ? "Show Playlist" : "Hide Playlist"}>
             <FaMusic />
           </button>
-          <button onClick={handleMinimize}>{playerMinimized ? <FaChevronUp /> : <FaChevronDown />}</button>
+          <button onClick={handleMinimize} title={playerMinimized ? "Maximize Player" : "Minimize Player"}>
+            {playerMinimized ? <FaChevronUp /> : <FaChevronDown />}
+          </button>
           <button onClick={closePlayer} id='close-btn' title='Close Player'>
             <FaTimes />
           </button>
