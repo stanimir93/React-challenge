@@ -5,10 +5,10 @@ const MusicContext = createContext();
 function MusicProvider(props) {
   const { songs, currentSongToPlay, setCurrentSongToPlay, setPlayerState } = props;
 
-  // Shape of the object to be used to store the music data
+  // Shape of the object to be used to store the music data and methods
   const musicShape = {
-    allSongsMap: null, // Map  -> [[eId, Name]]
-    allSongIdsArray: null, // Array -> [eId, eId]
+    allSongsMap: null, // Map [[eId, Name]]
+    allSongIdsArray: null, // Array [eId]
     playerState: null, // Number
     currName: null, // String
     currIdx: null, // Number
@@ -37,7 +37,7 @@ function MusicProvider(props) {
   // Save the music object inside ref
   const music = useRef(musicShape);
 
-  // When songs are fetched, extract and store data into the music context
+  // When songs are fetched, extract and stored data into the music context
   useEffect(() => {
     if (!songs) return;
     music.current.allSongsMap = songs.reduce((acc, curr) => {

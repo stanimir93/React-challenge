@@ -12,11 +12,11 @@ import { MusicProvider } from "./contexts/MusicContext";
 import { CONFIG } from "./config/config";
 
 export default function App() {
-  const [songs, setSongs] = useState(); // songs storing the data fetched from the API
-  const [playerState, setPlayerState] = useState(); // setPlayerState is given to the YouTube Player to inform us on state updates
-  const [currentSongToPlay, setCurrentSongToPlay] = useState(); //take the song eId
+  const [songs, setSongs] = useState(); // Store the data from the API
+  const [playerState, setPlayerState] = useState(); // setPlayerState is called when on the custom event ("ytPlayerStateChangeEvent")
+  const [currentSongToPlay, setCurrentSongToPlay] = useState(); // this takes the song eId and opens the player
 
-  // Fetch playlist from API (make sure CONFIG.useDummyData === false in order to fetch from API)
+  // Fetch playlist from API (make sure CONFIG.useDummyData === false)
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
